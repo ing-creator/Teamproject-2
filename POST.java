@@ -182,12 +182,16 @@ public class POST
                 }
             }
 
-            if (cash >= total) {
+            if (cash >= total){
                 int change = cash - (int)total;
                 printReceipt(cash, change);
                 saleDB[saleRecord] = sale;
                 saleRecord++;
-                System.out.println("[결제 완료] 다음에 또 오세요~");
+                if (change > 0){
+                    System.out.println("[결제 완료] 거스름돈 " + change + "원입니다. 다음에 또 오세요~");
+                } else{
+                    System.out.println("[결제 완료] 다음에 또 오세요~");
+                }
                 return;
             } else {
                 System.out.println("[ 현금이 " + (int)(total - cash) + "원 부족합니다. ]");
