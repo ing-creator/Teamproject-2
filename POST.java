@@ -18,17 +18,17 @@ public class POST
     {
         productDB = new Products[10];
         saleDB = new Sale[100];
-        productDB[0] = new Beverages("B001", "펩시",       2000);
-        productDB[1] = new Beverages("B002", "스프라이트", 2000);
-        productDB[2] = new Beverages("B003", "오렌지주스", 1500);
-        productDB[3] = new Beverages("B004", "포도주스",   1500);
-        productDB[4] = new Beverages("B005", "사과주스",   1500);
+        productDB[0] = new Beverages("880001", "콜라",       2000);
+        productDB[1] = new Beverages("880002", "사이다",     2000);
+        productDB[2] = new Beverages("880003", "오렌지주스", 1500);
+        productDB[3] = new Beverages("880004", "포도주스",   1500);
+        productDB[4] = new Beverages("880005", "사과주스",   1500);
 
-        productDB[5] = new AlcoholicDrinks("A001", "참이슬", 2000);
-        productDB[6] = new AlcoholicDrinks("A002", "진로",   2000);
-        productDB[7] = new AlcoholicDrinks("A003", "카스",   3000);
-        productDB[8] = new AlcoholicDrinks("A004", "테라",   3000);
-        productDB[9] = new AlcoholicDrinks("A005", "클라우드", 3000);
+        productDB[5] = new AlcoholicDrinks("880006", "참이슬",  2000);
+        productDB[6] = new AlcoholicDrinks("880007", "진로",    2000);
+        productDB[7] = new AlcoholicDrinks("880008", "카스",    3000);
+        productDB[8] = new AlcoholicDrinks("880009", "테라",    3000);
+        productDB[9] = new AlcoholicDrinks("880010", "클라우드", 3000);
 
     }
  
