@@ -133,14 +133,13 @@ public class POST
             double subtotal = price * quantity;
             totalTax += (vat + liquorTax + eduTax) * quantity;
             
-            System.out.printf("%-10s %3d개  %6.0f원%n", 
-            product.getName(), quantity, subtotal);
+            System.out.println(p.getName() + "  " + quantity + "개  " + (int)subtotal + "원");
             
             if (liquorTax > 0) {
-                System.out.printf("  ㄴ 주세(72%%)        : %.0f원%n", liquorTax * quantity);
-                System.out.printf("  ㄴ 교육세(주세x30%%) : %.0f원%n", eduTax * quantity);
+                System.out.println("  ㄴ 주세(72%%)        : " + (int)(liquorTax * quantity) + "원";
+                System.out.println("  ㄴ 교육세(주세x30%%) : " + (int)(eduTax * quantity) + "원";
             }
-            System.out.printf("  ㄴ 부가가치세(10%%)  : %.0f원%n", vat * quantity);
+            System.out.println("  ㄴ 부가가치세(10%)  : " + (int)(vat * quantity) + "원");
         }
         System.out.println("----------------------------");
         System.out.println("총 구매액    : " + (int)calculateTotal() + "원");
