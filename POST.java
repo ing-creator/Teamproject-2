@@ -1,8 +1,9 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 /**
  * POST 상품 데이터베이스, 세일 데이터베이스, 바코드 스캔, 결제, 영수증 출력등을 관리하는 클래스
  * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @version (2026.06.11)
  */
 public class POST
 {
@@ -18,18 +19,18 @@ public class POST
     {
         productDB = new Products[10];
         saleDB = new Sale[100];
-        productDB[0] = new Beverages("880001", "콜라",       2000);
+        
+        productDB[0] = new Beverages("880001", "콜 라",       2000);
         productDB[1] = new Beverages("880002", "사이다", 2000);
-        productDB[2] = new Beverages("880003", "오렌지주스", 1500);
-        productDB[3] = new Beverages("880004", "포도주스",   1500);
-        productDB[4] = new Beverages("880005", "사과주스",   1500);
-
-        productDB[5] = new AlcoholicDrinks("880006", "참이슬", 2000);
-        productDB[6] = new AlcoholicDrinks("880007", "진로",   2000);
-        productDB[7] = new AlcoholicDrinks("880008", "카스",   3000);
-        productDB[8] = new AlcoholicDrinks("880009", "테라",   3000);
-        productDB[9] = new AlcoholicDrinks("880010", "클라우드", 3000);
-
+        productDB[2] = new Beverages("880003", "솔의눈", 1500);
+        productDB[3] = new Beverages("880004", "밀키스",   1500);
+        productDB[4] = new Beverages("880005", "봉 봉",   1500);
+        
+        productDB[5] = new AlcoholicDrinks("880006", "참이슬", 2000, "소주");
+        productDB[6] = new AlcoholicDrinks("880007", "진 로",   2000, "소주");
+        productDB[7] = new AlcoholicDrinks("880008", "카 스",   3000, "맥주");
+        productDB[8] = new AlcoholicDrinks("880009", "테 라",   3000, "맥주");
+        productDB[9] = new AlcoholicDrinks("880010", "칭따오", 3000, "맥주");
     }
 
     /**
@@ -62,7 +63,11 @@ public class POST
     public void printProductList()
     {
         System.out.println("[ 상품 목록 ]");
+        System.out.println("< 음료 >");
         for(int i = 0; i < productDB.length; i++){
+            if(i == 5){
+                System.out.println("< 주류 >");
+            }
             System.out.println(productDB[i].getBarcode() + ":" + productDB[i].getName() + " " + productDB[i].getPrice() + "원");
         }
         System.out.println("------------------");
@@ -93,16 +98,16 @@ public class POST
                     }
                     break;
                 }
-                catch(Exception e){
+                catch(InputMismatchException e){
                     System.out.println("숫자를 입력하세요");
-                    scanner.next();
-                }
+                    String ex = scanner.nextLine();
+               }
             }
             
             Products product = findProduct(barcode);
             if(product == null){
                 System.out.println("해당 상품은 없습니다");
-                continue; 
+                return;
             }
             sale.addProduct(product, quantity);
             System.out.println("[추가]" + sale.getProductCount() + ". " + product.getName() + "x" + quantity);
@@ -146,19 +151,39 @@ public class POST
      */
     public void printReceipt(int cash, int change)
     {
-        System.out.println("========== 영수증 ==========");
-        double totalTax = 0;
+        System.out.println("============================");
+        System.out.println("           영수증");
+        System.out.println("============================");
+        System.out.println("상품명     단가   수량   금액");
+        System.out.println("----------------------------");
+        
+        double totalVAT = 0;
+        double totalLiquorTax = 0;
+        double totalEduTax = 0;
+        
         for(int i = 0; i < sale.getProductCount(); i++){
             Products product = sale.getProduct(i);
             int quantity = sale.getQuantity(i);
+            int price = product.getPrice();
+            Tax t = (Tax) product;
+            double vat = t.calculateVAT(product.getPrice());
+            double liquorTax = t.calculateLiquorTax(product.getPrice());
+            double eduTax = t.calculateEduTax(product.getPrice());
             int subtotal = product.getPrice() * quantity;
-            totalTax += (product.getPrice() - product.getOriginalPrice()) * quantity;
-            System.out.println(product.getName() + "  " + quantity + "개  " + subtotal + "원");
+            
+            totalVAT += vat * quantity;
+            totalLiquorTax += liquorTax * quantity;
+            totalEduTax += eduTax * quantity;
+            
+            System.out.println(product.getName() + "      " + product.getPrice() + "   " + quantity + "   " + subtotal + "원");
         }
-
         System.out.println("----------------------------");
         System.out.println("총 구매액    : " + (int)calculateTotal() + "원");
-        System.out.println("세금 합계    : " + (int)totalTax + "원");
+        System.out.println("부가세      : " + (int)totalVAT + "원");
+        if(totalLiquorTax > 0){
+            System.out.println("주세       : " + (int)totalLiquorTax + "원");
+            System.out.println("교육세      : " + (int)totalEduTax + "원");
+        }
         System.out.println("----------------------------");
         System.out.println("결제 금액    : " + (int)calculateTotal() + "원");
         System.out.println("현금        : " + cash + "원");
@@ -175,6 +200,7 @@ public class POST
             System.out.println("[ 결제 취소 ]");
             return;
         }
+        Scanner scanner = new Scanner(System.in);
         double total = calculateTotal();
 
         while (true) {
@@ -189,9 +215,9 @@ public class POST
                     }
                     break;
                 }
-                catch(Exception e){
+                catch(InputMismatchException e){
                     System.out.println("숫자를 입력하세요");
-                    scanner.next();
+                    String ex = scanner.nextLine();
                 }
             }
 
@@ -222,14 +248,14 @@ public class POST
                         }
                         break;
                     }
-                    catch(Exception e){
+                    catch(InputMismatchException e){
                         System.out.println("숫자를 입력하세요");
-                        scanner.next();
+                        String ex = scanner.nextLine();
                     }
                 }
 
                 if (choice == 1) {
-                    System.out.println("[결제 취소] 다음에 또 오세요~");
+                    System.out.println("[결제 취소]");
                     return;
                 } else if (choice == 2) {
                     int index = 0;
@@ -238,16 +264,18 @@ public class POST
                             System.out.print("취소할 상품 번호 (1~" + sale.getProductCount() + ") : ");
                             index = scanner.nextInt() - 1;
                             if(index < 0){
-                                throw new Exception("올바른 번호를 입력하세요");
+                                System.out.println("올바른 번호를 입력하세요");
+                                continue;
                             }
                             if(index >= sale.getProductCount()){
-                                throw new Exception("올바른 번호를 입력하세요");
+                                System.out.println("올바른 번호를 입력하세요");
+                                continue;
                             }
                             break;
                         }
-                        catch(Exception e){
+                        catch(InputMismatchException e){
                             System.out.println("올바른 번호를 입력하세요");
-                            scanner.next();
+                            String ex = scanner.nextLine();
                         }
                     }
 
