@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 /**
  * POST 상품 데이터베이스, 세일 데이터베이스, 바코드 스캔, 결제, 영수증 출력등을 관리하는 클래스
- * @author (2023320035_윤효준, )
+ * @author (2023320035_윤효준,2025320029_이인성,2025320005_김강빈 )
  * @version (2026.06.11)
  */
 public class POST
