@@ -118,9 +118,9 @@ public class POST
      * 총액 계산하는 메소드
      * @return    총액
      */
-    public double calculateTotal()
+    public int calculateTotal()
     {
-        double total = 0;
+        int total = 0;
         for(int i = 0; i < sale.getProductCount(); i++){
             total += sale.getProduct(i).calculatePrice(sale.getQuantity(i));
         }
@@ -132,8 +132,8 @@ public class POST
      */
     public void finishSale()
     {
-        double total = calculateTotal();
-        System.out.println("지불할 금액 : " + (int)total + "원");
+        int total = calculateTotal();
+        System.out.println("지불할 금액 : " + total + "원");
     }
 
     /**
@@ -178,14 +178,14 @@ public class POST
             System.out.println(product.getName() + "      " + product.getPrice() + "   " + quantity + "   " + subtotal + "원");
         }
         System.out.println("----------------------------");
-        System.out.println("총 구매액    : " + (int)calculateTotal() + "원");
+        System.out.println("총 구매액    : " + calculateTotal() + "원");
         System.out.println("부가세      : " + (int)totalVAT + "원");
         if(totalLiquorTax > 0){
             System.out.println("주세       : " + (int)totalLiquorTax + "원");
             System.out.println("교육세      : " + (int)totalEduTax + "원");
         }
         System.out.println("----------------------------");
-        System.out.println("결제 금액    : " + (int)calculateTotal() + "원");
+        System.out.println("결제 금액    : " + calculateTotal() + "원");
         System.out.println("현금        : " + cash + "원");
         System.out.println("거스름돈     : " + change + "원");
         System.out.println("============================");
