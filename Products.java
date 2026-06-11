@@ -2,7 +2,7 @@
 /**
  * Products 음료와 주류의 공통 속성과 메소드를 정의한 추상클래스
  *
- * @author (작성자 이름)
+ * @author (2023320035_윤효준, )
  * @version (2026.06.11)
  */
 public abstract class Products
