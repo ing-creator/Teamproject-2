@@ -47,6 +47,7 @@ public class Sale
 
     /**
      * 현재 담긴 상품(종류)의 개수 반환하는 메소드
+     * @return    상품(종류)의 수
      */
     public int getProductCount()
     {
@@ -56,6 +57,7 @@ public class Sale
     /**
      * 인덱스에 해당하는 상품 반환하는 메소드
      * @param  index  상품 인덱스
+     * @return    해당 인덱스의 상품
      */
     public Products getProduct(int index)
     {
@@ -65,6 +67,7 @@ public class Sale
     /**
      * 인덱스에 해당하는 수량 반환하는 메소드
      * @param  index  상품 인덱스
+     * @return    해당 인덱스의 수량
      */
     public int getQuantity(int index)
     {
