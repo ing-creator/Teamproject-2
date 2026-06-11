@@ -2,7 +2,7 @@
 /**
  * Beverge 음료에 대한 클래스
  *
- * @author (2023320035_윤효준,2025320029_이인성,2025320005_김강빈 )
+ * @author (2023320035_윤효준, 2025320029_이인성, 2025320005_김강빈, 2025320062_이진혁)
  * @version (2026.06.11)
  */
 public class Beverages extends Products implements Tax
