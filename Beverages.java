@@ -3,7 +3,7 @@
  * Beverge 음료에 대한 클래스
  *
  * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @version (2026.06.11)
  */
 public class Beverages extends Products implements Tax
 {
@@ -22,14 +22,23 @@ public class Beverages extends Products implements Tax
      */
     public double calculateVAT(int price)
     {
-        return price - (price / 1.1);
+        return getOriginalPrice() * 0.1;
     }
 
     /**
-     * 금액 계산 메소드
+     * (세금 포함된)금액 계산 메소드
      *
      * @param  quantity  수량
      * @return    최종 금액
+     */
+    public int calculatePrice(int quantity)
+    {
+        return getPrice() * quantity;
+    }
+
+    /**
+     * 원가 구하는 메소드
+     * @return    원가
      */
     public double getOriginalPrice()
     {
