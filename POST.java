@@ -102,7 +102,7 @@ public class POST
             Products product = findProduct(barcode);
             if(product == null){
                 System.out.println("해당 상품은 없습니다");
-                return;
+                continue; 
             }
             sale.addProduct(product, quantity);
             System.out.println("[추가]" + sale.getProductCount() + ". " + product.getName() + "x" + quantity);
@@ -151,22 +151,11 @@ public class POST
         for(int i = 0; i < sale.getProductCount(); i++){
             Products product = sale.getProduct(i);
             int quantity = sale.getQuantity(i);
-            int price = product.getPrice();
-            Tax t = (Tax) product;
-            double vat = t.calculateVAT(price);
-            double liquorTax = t.calculateLiquorTax(price);
-            double eduTax = t.calculateEduTax(price);
-            double subtotal = price * quantity;
-            totalTax += (vat + liquorTax + eduTax) * quantity;
-
-            System.out.println(product.getName() + "  " + quantity + "개  " + (int)subtotal + "원");
-
-            if (liquorTax > 0) {
-                System.out.println("  ㄴ 주세(72%%)        : " + (int)(liquorTax * quantity) + "원");
-                System.out.println("  ㄴ 교육세(주세x30%%) : " + (int)(eduTax * quantity) + "원");
-            }
-            System.out.println("  ㄴ 부가가치세(10%)  : " + (int)(vat * quantity) + "원");
+            int subtotal = product.getPrice() * quantity;
+            totalTax += (product.getPrice() - product.getOriginalPrice()) * quantity;
+            System.out.println(product.getName() + "  " + quantity + "개  " + subtotal + "원");
         }
+
         System.out.println("----------------------------");
         System.out.println("총 구매액    : " + (int)calculateTotal() + "원");
         System.out.println("세금 합계    : " + (int)totalTax + "원");
@@ -186,7 +175,6 @@ public class POST
             System.out.println("[ 결제 취소 ]");
             return;
         }
-        Scanner scanner = new Scanner(System.in);
         double total = calculateTotal();
 
         while (true) {

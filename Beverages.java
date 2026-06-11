@@ -31,8 +31,8 @@ public class Beverages extends Products implements Tax
      * @param  quantity  수량
      * @return    최종 금액
      */
-    public double calculatePrice(int quantity)
+    public double getOriginalPrice()
     {
-        return getPrice() * quantity;
+        return getPrice() / 1.1;
     }
 }

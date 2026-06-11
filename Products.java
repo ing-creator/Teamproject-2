@@ -49,5 +49,11 @@ public abstract class Products
      * 금액 계산 메소드
      * @param  quantity:수량
      */
-    abstract public double calculatePrice(int quantity);
+    public double calculatePrice(int quantity)
+    {
+        return getPrice() * quantity;
+    }
+    
+    //세금 포함 가격에서 원가 역산
+    public abstract double getOriginalPrice();
 }
