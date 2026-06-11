@@ -46,7 +46,7 @@ public class Sale
     }
 
     /**
-     * 현재 담긴 상품의 개수 반환하는 메소드
+     * 현재 담긴 상품(종류)의 개수 반환하는 메소드
      */
     public int getProductCount()
     {
