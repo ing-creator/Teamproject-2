@@ -1,9 +1,9 @@
 
 /**
- * Products 음료와 주류의 공통 속성과 메소드를 정의
+ * Products 음료와 주류의 공통 속성과 메소드를 정의한 추상클래스
  *
  * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @version (2026.06.11)
  */
 public abstract class Products
 {
@@ -49,11 +49,13 @@ public abstract class Products
      * 금액 계산 메소드
      * @param  quantity:수량
      */
-    public double calculatePrice(int quantity)
+    public int calculatePrice(int quantity)
     {
-        return getPrice() * quantity;
+        return Price * quantity;
     }
     
-    //세금 포함 가격에서 원가 역산
+    /**
+     * 상품의 원가 구하는 메소드
+     */
     public abstract double getOriginalPrice();
 }
