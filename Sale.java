@@ -2,7 +2,7 @@
 /**
  * Sale 거래 정보 관리하는 클래스
  *
- * @author (작성자 이름)
+ * @author (2023320035_윤효준, )
  * @version (2026.06.11)
  */
 public class Sale
