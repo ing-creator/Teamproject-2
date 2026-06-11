@@ -51,7 +51,7 @@ public abstract class Products
      */
     public int calculatePrice(int quantity)
     {
-        return Price * quantity;
+        return price * quantity;
     }
     
     /**
