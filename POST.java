@@ -12,6 +12,7 @@ public class POST
     private Sale[] saleDB; //세일 데이터베이스
     private int saleRecord; //완료한 거래 기록 횟수
     private Scanner scanner = new Scanner(System.in);
+    
     /**
      * POST 클래스의 객체 생성자
      */
