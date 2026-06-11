@@ -54,7 +54,7 @@ public class AlcoholicDrinks extends Products implements Tax
     }
 
     /**
-     * 금액 계산 메소드
+     * (세금 포함된)금액 계산 메소드
      * @param  quantity  수량
      * @return    최종 금액
      */
