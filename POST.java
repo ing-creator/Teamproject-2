@@ -50,7 +50,7 @@ public class POST
     public Products findProduct(String barcode)
     {
         for(int i = 0; i < productDB.length; i++){
-            if(productDB[i].getBarcode().equals(barcode)){
+            if(productDB[i].getBarcode() == barcode){
                 return productDB[i];
             }
         }
@@ -83,7 +83,7 @@ public class POST
             System.out.print("바코드 입력 (완료시 '0') : ");
             String barcode = scanner.next();
 
-            if (barcode.equalsIgnoreCase("0")) {
+            if (barcode == "0") {
                 break;
             }
 
@@ -281,7 +281,7 @@ public class POST
 
                     removeProduct(index);
                     total = calculateTotal();
-                    System.out.println("지불할 금액 : " + (int)total + "원");
+                    System.out.println("지불할 금액 : " + total + "원");
                 }
             }
         }
