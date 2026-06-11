@@ -3,7 +3,7 @@
  * Tax - 세금 계산 인터페이스
  *
  * @author (작성자 이름)
- * @version (버전 번호나 날짜)
+ * @version (2026.06.11)
  */
 public interface Tax
 {
