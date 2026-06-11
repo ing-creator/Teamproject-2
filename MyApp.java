@@ -13,7 +13,7 @@ public class MyApp
         post.printProductList(); //매장 내 상품 목록들 출력
         post.startSale(); //거래 시작
         
-        post.scanBarcode(); //
+        post.scanBarcode(); //바코드 스캔
         post.finishSale(); //거래 종료
         post.payment(); //결제
     }
