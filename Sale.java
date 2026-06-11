@@ -3,7 +3,7 @@
  * Sale 거래 정보 관리하는 클래스
  *
  * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @version (2026.06.11)
  */
 public class Sale
 {
