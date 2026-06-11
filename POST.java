@@ -108,7 +108,7 @@ public class POST
             Products product = findProduct(barcode);
             if(product == null){
                 System.out.println("해당 상품은 없습니다");
-                return;
+                continue;
             }
             sale.addProduct(product, quantity);
             System.out.println("[추가]" + sale.getProductCount() + ". " + product.getName() + "x" + quantity);
