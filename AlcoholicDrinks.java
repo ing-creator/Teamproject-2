@@ -25,7 +25,7 @@ public class AlcoholicDrinks extends Products implements Tax
      */
     public double calculateLiquorTax(int price)
     {
-        if(alcoholType == "맥주"){
+        if(alcoholType.equals("맥주")){
             return 885.7 * 0.5;
         }
         else{
@@ -69,7 +69,7 @@ public class AlcoholicDrinks extends Products implements Tax
      */
     public double getOriginalPrice()
     {
-        if(alcoholType == "맥주"){
+        if(alcoholType.equals("맥주")){
             double liquorTax = 885.7 * 0.5;
             double eduTax = liquorTax * 0.3;
             double originalPrice = (getPrice() - liquorTax - eduTax) / 1.1;
